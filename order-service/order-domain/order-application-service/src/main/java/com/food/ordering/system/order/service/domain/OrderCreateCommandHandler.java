@@ -9,7 +9,7 @@ import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
 import com.food.ordering.system.order.service.domain.ports.output.respository.CustomerRepository;
-import com.food.ordering.system.order.service.domain.ports.output.respository.OrderRespository;
+import com.food.ordering.system.order.service.domain.ports.output.respository.OrderRepository;
 import com.food.ordering.system.order.service.domain.ports.output.respository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class OrderCreateCommandHandler {
 
     private final OrderDomainService orderDomainService;
 
-    private final OrderRespository orderRespository;
+    private final OrderRepository orderRepository;
 
     private final CustomerRepository customerRepository;
 
@@ -32,11 +32,11 @@ public class OrderCreateCommandHandler {
 
     private final OrderDataMapper orderDataMapper;
 
-    public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRespository orderRespository,
+    public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository,
                                      CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
                                      OrderDataMapper orderDataMapper) {
         this.orderDomainService = orderDomainService;
-        this.orderRespository = orderRespository;
+        this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.restaurantRepository = restaurantRepository;
         this.orderDataMapper = orderDataMapper;
@@ -75,7 +75,7 @@ public class OrderCreateCommandHandler {
     }
 
     private Order saverOrder(Order order) {
-        final Order orderResult = orderRespository.save(order);
+        final Order orderResult = orderRepository.save(order);
         if (orderResult == null) {
             log.error("Could not save order!");
             throw new OrderDomainException("Could not save order!");
