@@ -9,6 +9,7 @@ import com.food.orderyng.system.domain.valueobject.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
@@ -98,7 +99,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void updateFailureMessages(List<String> failureMessages) {
         if (this.failureMessages != null && failureMessages != null) {
-            this.failureMessages.addAll(failureMessages.stream().filter(message -> !message.isEmpty()).toList());
+            this.failureMessages.addAll(failureMessages.stream().filter(message -> !message.isEmpty()).collect(Collectors.toList()));
         }
         if (this.failureMessages == null) {
             this.failureMessages = failureMessages;
@@ -114,7 +115,7 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     private void validateTotalPrice() {
-        if (price == null || price.isGreaterThanZero()) {
+        if (price == null || (!price.isGreaterThanZero())) {
             throw new OrderDomainException("Total price must be greater than zero!");
         }
     }
