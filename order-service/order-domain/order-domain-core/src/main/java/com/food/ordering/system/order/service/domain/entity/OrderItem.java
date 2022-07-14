@@ -1,16 +1,16 @@
 package com.food.ordering.system.order.service.domain.entity;
 
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
-import com.food.orderyng.system.domain.entity.BaseEntity;
-import com.food.orderyng.system.domain.valueobject.Money;
-import com.food.orderyng.system.domain.valueobject.OrderId;
+import com.food.ordering.system.domain.entity.BaseEntity;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.OrderId;
 
 public class OrderItem extends BaseEntity<OrderItemId> {
     private OrderId orderId;
     private final Product product;
     private final int quantity;
     private final Money price;
-    private final Money subtotal;
+    private final Money subTotal;
 
     public OrderId getOrderId() {
         return orderId;
@@ -28,8 +28,8 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         return price;
     }
 
-    public Money getSubtotal() {
-        return subtotal;
+    public Money getSubTotal() {
+        return subTotal;
     }
 
     private OrderItem(Builder builder) {
@@ -38,7 +38,7 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         product = builder.product;
         quantity = builder.quantity;
         price = builder.price;
-        subtotal = builder.subtotal;
+        subTotal = builder.subtotal;
     }
 
     public static Builder builder() {
@@ -53,7 +53,7 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     public boolean isPriceValid() {
         return price.isGreaterThanZero()
                 && price.equals(product.getPrice())
-                && price.multiply(quantity).equals(subtotal);
+                && price.multiply(quantity).equals(subTotal);
     }
 
     public static final class Builder {
@@ -68,7 +68,7 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         private Builder() {
         }
 
-        public Builder id(OrderItemId val) {
+        public Builder orderItemId(OrderItemId val) {
             orderItemId = val;
             return this;
         }
@@ -93,7 +93,7 @@ public class OrderItem extends BaseEntity<OrderItemId> {
             return this;
         }
 
-        public Builder subtotal(Money val) {
+        public Builder subTotal(Money val) {
             subtotal = val;
             return this;
         }
@@ -101,5 +101,6 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         public OrderItem build() {
             return new OrderItem(this);
         }
+
     }
 }

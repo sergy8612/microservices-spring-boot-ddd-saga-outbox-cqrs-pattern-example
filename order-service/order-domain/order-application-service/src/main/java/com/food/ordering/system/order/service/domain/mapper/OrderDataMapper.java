@@ -9,10 +9,10 @@ import com.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.order.service.domain.valueobject.StreetAddress;
-import com.food.orderyng.system.domain.valueobject.CustomerId;
-import com.food.orderyng.system.domain.valueobject.Money;
-import com.food.orderyng.system.domain.valueobject.ProductId;
-import com.food.orderyng.system.domain.valueobject.RestaurantId;
+import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.ProductId;
+import com.food.ordering.system.domain.valueobject.RestaurantId;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -60,7 +60,7 @@ public class OrderDataMapper {
                         .product(new Product(new ProductId(orderItem.getProductId())))
                         .price(new Money(orderItem.getPrice()))
                         .quantity(orderItem.getQuantity())
-                        .subtotal(new Money(orderItem.getSubTotal()))
+                        .subTotal(new Money(orderItem.getSubTotal()))
                         .build()).collect(Collectors.toList());
     }
 
