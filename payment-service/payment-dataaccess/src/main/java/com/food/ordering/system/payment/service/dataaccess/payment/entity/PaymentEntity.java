@@ -1,6 +1,6 @@
 package com.food.ordering.system.payment.service.dataaccess.payment.entity;
 
-import com.food.ordering.system.domain.valueobject.PaymentOrderStatus;
+import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,7 +24,7 @@ public class PaymentEntity {
     private UUID orderId;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
-    private PaymentOrderStatus status;
+    private PaymentStatus status;
     private ZonedDateTime createdAt;
 
     @Override

@@ -4,7 +4,7 @@ import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.CustomerId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
-import com.food.ordering.system.domain.valueobject.PaymentOrderStatus;
+import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import com.food.ordering.system.payment.service.domain.valueobject.PaymentId;
 
 import java.time.ZoneId;
@@ -18,7 +18,7 @@ public class Payment extends AggregateRoot<PaymentId> {
     private final CustomerId customerId;
     private final Money price;
 
-    private PaymentOrderStatus paymentOrderStatus;
+    private PaymentStatus paymentStatus;
     private ZonedDateTime createdAt;
 
     public void initializePayment() {
@@ -32,8 +32,8 @@ public class Payment extends AggregateRoot<PaymentId> {
         }
     }
 
-    public void updateStatus(PaymentOrderStatus paymentOrderStatus) {
-        this.paymentOrderStatus = paymentOrderStatus;
+    public void updateStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     private Payment(Builder builder) {
@@ -41,7 +41,7 @@ public class Payment extends AggregateRoot<PaymentId> {
         orderId = builder.orderId;
         customerId = builder.customerId;
         price = builder.price;
-        paymentOrderStatus = builder.paymentOrderStatus;
+        paymentStatus = builder.paymentStatus;
         createdAt = builder.createdAt;
     }
 
@@ -62,8 +62,8 @@ public class Payment extends AggregateRoot<PaymentId> {
         return price;
     }
 
-    public PaymentOrderStatus getPaymentOrderStatus() {
-        return paymentOrderStatus;
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -75,7 +75,7 @@ public class Payment extends AggregateRoot<PaymentId> {
         private OrderId orderId;
         private CustomerId customerId;
         private Money price;
-        private PaymentOrderStatus paymentOrderStatus;
+        private PaymentStatus paymentStatus;
         private ZonedDateTime createdAt;
 
         private Builder() {
@@ -101,8 +101,8 @@ public class Payment extends AggregateRoot<PaymentId> {
             return this;
         }
 
-        public Builder paymentOrderStatus(PaymentOrderStatus val) {
-            paymentOrderStatus = val;
+        public Builder paymentStatus(PaymentStatus val) {
+            paymentStatus = val;
             return this;
         }
 

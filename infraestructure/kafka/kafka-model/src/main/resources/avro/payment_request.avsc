@@ -1,4 +1,4 @@
- {
+{
     "namespace": "com.food.ordering.system.kafka.order.avro.model",
     "type": "record",
     "name": "PaymentRequestAvroModel",
