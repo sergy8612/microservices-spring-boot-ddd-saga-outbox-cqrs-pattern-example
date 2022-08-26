@@ -238,6 +238,18 @@
                     <release>17</release>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.ferstl</groupId>
+                <artifactId>depgraph-maven-plugin</artifactId>
+                <version>4.0.1</version>
+                <configuration>
+                    <createImage>true</createImage>
+                    <reduceEdges>false</reduceEdges>
+                    <scope>compile</scope>
+                    <includes>com.food.ordering.system*</includes>
+                    <graphFormat>puml</graphFormat>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
